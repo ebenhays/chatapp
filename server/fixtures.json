@@ -1,0 +1,42 @@
+{
+  "Forums": [
+    { "id": "FR100", "forumType": "private", "name": "Programmers" },
+    {
+      "id": "FR101",
+      "forumType": "public",
+      "name": "FAQ's"
+    }
+  ],
+  "Users": [
+    {
+      "username": "ebenhays",
+      "fullname": "Ebenezer Casely Hayford",
+      "forumId": "FR100",
+      "pictureUrl": "./avatar/andela.jpg"
+    },
+    {
+      "username": "kofihays",
+      "fullname": "Kofi Casely Hayford",
+      "forumId": "FR101",
+      "pictureUrl": "./avatar/andela.jpg"
+    }
+  ],
+  "Messages": [
+    {
+      "userId": "ebenhays",
+      "msgTitle": "GoodBye GraphCool",
+      "message": "I am sad to say goodbye to graphcool",
+      "postedDate": "2010-06-12",
+      "forumId": "FR100",
+      "postedTime": "10:10:59"
+    },
+    {
+      "userId": "kofihays",
+      "msgTitle": "Is Deno replacing Node?",
+      "message": "Hmm, we need to explore it",
+      "postedDate": "2020-05-12",
+      "forumId": "FR101",
+      "postedTime": "10:11:00"
+    }
+  ]
+}
