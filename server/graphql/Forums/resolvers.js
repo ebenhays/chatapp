@@ -1,9 +1,10 @@
+const { PRIVATE } = require("./forumTypes");
 const Query = {
   getForum: async (_, { id }, { data }) => {
     return await data.Forums.find(f => f.id === id);
   },
   getForums: async (_, args, { data }) => {
-    return await data.Forums;
+    return await data.Forums.filter(forum => forum.forumType !== PRIVATE);
   }
 };
 

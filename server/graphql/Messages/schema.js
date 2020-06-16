@@ -1,27 +1,26 @@
 const { gql } = require("apollo-server-express");
 
 module.exports = gql`
-  type Messages {
-    user: [Users]
+  type Message {
     message: String!
     msgTitle: String!
     postedDate: String!
     postedTime: String!
-    forum: [Forum]
-    userId: String
+    forums: [Forum]
+    authorId: String
   }
 
   extend type Query {
-    getMessages: [Messages]
-    getMessage(userId: String!): [Messages]
+    getMessages: [Message]
+    getMessage(authorId: String!): [Message]
   }
 
   extend type Mutation {
     addMessage(
-      userId: String!
+      authorId: String!
       message: String!
       msgTitle: String!
       forumId: String!
-    ): Messages
+    ): Message
   }
 `;

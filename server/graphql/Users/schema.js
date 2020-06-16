@@ -1,11 +1,10 @@
 const { gql } = require("apollo-server-express");
-
 module.exports = gql`
   type Users {
     username: String!
     fullname: String!
     pictureUrl: String!
-    forum: [Forum]
+    forums: [Forum]
   }
   extend type Query {
     getUser(username: String): Users
@@ -19,5 +18,6 @@ module.exports = gql`
       forumId: String!
       pictureUrl: String!
     ): Users
+    joinPrivateForum(forumId: String!, username: String!): Users
   }
 `;

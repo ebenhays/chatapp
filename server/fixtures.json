@@ -1,9 +1,9 @@
 {
   "Forums": [
-    { "id": "FR100", "forumType": "private", "name": "Programmers" },
+    { "id": "FR100", "forumType": "PRIVATE", "name": "Programmers" },
     {
       "id": "FR101",
-      "forumType": "public",
+      "forumType": "PUBLIC",
       "name": "FAQ's"
     }
   ],
@@ -23,7 +23,7 @@
   ],
   "Messages": [
     {
-      "userId": "ebenhays",
+      "authorId": "ebenhays",
       "msgTitle": "GoodBye GraphCool",
       "message": "I am sad to say goodbye to graphcool",
       "postedDate": "2010-06-12",
@@ -31,7 +31,7 @@
       "postedTime": "10:10:59"
     },
     {
-      "userId": "kofihays",
+      "authorId": "kofihays",
       "msgTitle": "Is Deno replacing Node?",
       "message": "Hmm, we need to explore it",
       "postedDate": "2020-05-12",

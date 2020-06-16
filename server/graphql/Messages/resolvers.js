@@ -13,9 +13,9 @@ const Query = {
       throw new ApolloError("There was a problem retriveing data");
     }
   },
-  getMessage: async (_, { userId }, { data }) => {
+  getMessage: async (_, { authorId }, { data }) => {
     try {
-      return await data.Messages.filter(msg => msg.userId === userId).sort(
+      return await data.Messages.filter(msg => msg.authorId === authorId).sort(
         (a, b) => new Date(b.postedDate) - new Date(a.postedDate)
       );
     } catch (error) {
@@ -25,10 +25,10 @@ const Query = {
 };
 
 const Mutation = {
-  addMessage: async (_, { userId, message, msgTitle, forumId }, { data }) => {
+  addMessage: async (_, { authorId, message, msgTitle, forumId }, { data }) => {
     try {
       await data.Messages.push({
-        userId,
+        authorId,
         message,
         postedDate: dayjs().calendar(null, {
           sameElse: "DD/MM/YYYY"
@@ -48,13 +48,10 @@ const Mutation = {
   }
 };
 
-const Messages = {
-  forum: async (parent, _, { data }) => {
+const Message = {
+  forums: async (parent, _, { data }) => {
     return await data.Forums.filter(forum => forum.id === parent.forumId);
-  },
-  user: async (parent, _, { data }) => {
-    return await data.Users.filter(user => user.username === parent.userId);
   }
 };
 
-module.exports = { Query, Mutation, Messages };
+module.exports = { Query, Mutation, Message };

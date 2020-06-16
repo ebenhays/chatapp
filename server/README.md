@@ -31,13 +31,17 @@ module.exports = gql`
 
   type Forum {
     id: ID!
-    forumType: String!
+    forumType: ForumType
     name: String!
-    messages: [Messages]
+    messages: [Message]
   }
 
+  enum ForumType {
+    PRIVATE
+    PUBLIC
+  }
   extend type Mutation {
-    createForum(id: ID!, forumType: String!, name: String!): Forum
+    createForum(id: ID!, forumType: ForumType, name: String!): Forum
   }
 `;
 ```
@@ -48,28 +52,27 @@ This is the information posted by the user
 
 ```Schema
 module.exports = gql`
-  type Messages {
-    user: [Users]
+  type Message {
     message: String!
     msgTitle: String!
     postedDate: String!
     postedTime: String!
-    forum: [Forum]
-    userId: String
+    forums: [Forum]
+    authorId: String
   }
 
   extend type Query {
-    getMessages: [Messages]
-    getMessage(userId: String!): [Messages]
+    getMessages: [Message]
+    getMessage(authorId: String!): [Message]
   }
 
   extend type Mutation {
     addMessage(
-      userId: String!
+      authorId: String!
       message: String!
       msgTitle: String!
       forumId: String!
-    ): Messages
+    ): Message
   }
 `;
 ```
@@ -84,7 +87,7 @@ module.exports = gql`
     username: String!
     fullname: String!
     pictureUrl: String!
-    forum: [Forum]
+    forums: [Forum]
   }
   extend type Query {
     getUser(username: String): Users
@@ -98,9 +101,18 @@ module.exports = gql`
       forumId: String!
       pictureUrl: String!
     ): Users
+    joinPrivateForum(forumId: String!, username: String!): Users
   }
 `;
 ```
+
+### Test and Documentation
+
+You can access the application at http://localhost:5000/graphql
+
+### Link to Spec File
+
+[a relative link](specs.md)
 
 ### License
 

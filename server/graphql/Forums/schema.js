@@ -8,12 +8,16 @@ module.exports = gql`
 
   type Forum {
     id: ID!
-    forumType: String!
+    forumType: ForumType
     name: String!
-    messages: [Messages]
+    messages: [Message]
   }
 
+  enum ForumType {
+    PRIVATE
+    PUBLIC
+  }
   extend type Mutation {
-    createForum(id: ID!, forumType: String!, name: String!): Forum
+    createForum(id: ID!, forumType: ForumType, name: String!): Forum
   }
 `;

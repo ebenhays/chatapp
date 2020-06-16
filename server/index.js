@@ -12,9 +12,9 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use(helmet());
+app.use(helmet()); // added this for security
 //subscription
-const pubsub = new PubSub();
+const pubsub = new PubSub(); //initially thought it was a real time app so i added subscription to handle that
 //apollo server
 const server = new ApolloServer({
   typeDefs: allSchemas,
