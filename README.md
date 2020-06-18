@@ -12,6 +12,10 @@ npm install
 
 npm start
 
+### Access application
+
+You can access the application at http://localhost:5000/graphql
+
 ### GraphQL Documentation
 
 All GraphQl Schema and its related types, queries and mutations can be found in the graqhql directory in this project.
@@ -106,13 +110,127 @@ module.exports = gql`
 `;
 ```
 
-### Test and Documentation
+### Testing the Application
 
-You can access the application at http://localhost:5000/graphql
+Here are some mutations, and queries to test the application
 
-### Link to Spec File
+```Mutations
 
-[a relative link](specs.md)
+mutation ADD_USER{
+  addUser(username:"lawhays",fullname:"Lawrence Casely Hayford",forumId:"FR100", pictureUrl:"./avatar/andela.jpg"){
+    username,
+    fullname,
+    pictureUrl,
+    forums{
+      forumType,
+      name
+    }
+  }
+}
+
+mutation ADD_FORUM{
+  createForum(id: "FR103",name:"My Forum", forumType:PRIVATE){
+    name,
+    forumType
+  }
+}
+
+mutation ADD_MSG{
+  addMessage(authorId:"ebenhays",message:"Hello World",msgTitle:"Hey!, got you here",forumId:"FR103"){
+    authorId,
+    message,
+    msgTitle,
+    postedDate
+  }
+}
+
+mutation JOIN_PRIVATE_FORUM{
+  joinPrivateForum(forumId:"FR100",username:"kofihays"){
+    forums{
+      forumType
+    }
+  }
+}
+```
+
+```Queries
+
+query GET_FORUM{
+  getForum(id:"FR101"){
+    forumType,
+    name
+  }
+}
+
+query GET_ALL_FORUM{
+  getForums{
+    id,
+    forumType,
+    name,
+    messages{
+      msgTitle,
+      message
+    }
+
+  }
+}
+
+
+query GET_USER{
+  getUser(username:"ebenhays"){
+    username,
+    fullname,
+    pictureUrl,
+    forums{
+      forumType,
+      name
+    }
+  }
+}
+
+query GET_USERS{
+  getUsers{
+    username,
+    pictureUrl,
+    fullname,
+    forums{
+      forumType,
+      name
+    },
+
+  }
+}
+
+query GET_MSG{
+  getMessages{
+    message,
+    msgTitle,
+    postedDate,
+    postedTime
+    forums{
+      forumType,
+      name
+    }
+  }
+}
+
+query GET_MSG_BY_USER{
+  getMessage(authorId:"ebenhays"){
+    message,
+    message,
+    postedDate,
+    postedTime,
+    forums{
+      forumType,
+      name
+    }
+  }
+}
+```
+
+### Specifications
+
+[The specifications defining the behavior of this server application can be found here](specs.md)
 
 ### License
 
