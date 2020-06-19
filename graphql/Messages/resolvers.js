@@ -39,6 +39,12 @@ const Mutation = {
         msgTitle,
         forumId
       });
+      return {
+        authorId,
+        message,
+        msgTitle,
+        forumId
+      };
     } catch (error) {
       throw new ApolloError(
         "There was a problem saving message " + error.message,

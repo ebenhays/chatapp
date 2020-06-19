@@ -11,6 +11,11 @@ const Query = {
 const Mutation = {
   createForum: async (_, { id, forumType, name }, { data }) => {
     await data.Forums.push({ id, forumType, name });
+    return {
+      id,
+      forumType,
+      name
+    };
   }
 };
 

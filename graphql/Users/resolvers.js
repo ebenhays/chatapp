@@ -11,6 +11,12 @@ const Query = {
 const Mutation = {
   addUser: async (_, { username, fullname, forumId, pictureUrl }, { data }) => {
     await data.Users.push({ username, fullname, forumId, pictureUrl });
+    return {
+      username,
+      fullname,
+      forumId,
+      pictureUrl
+    };
   },
   joinPrivateForum: async (_, { forumId, username }, { data }) => {
     const { forumType } = await data.Forums.find(forum => forum.id === forumId);
@@ -27,6 +33,12 @@ const Mutation = {
     if (forumType !== null || undefined) {
       if (forumType === PRIVATE) {
         await data.Users.push({ username, fullname, forumId, pictureUrl });
+        return {
+          username,
+          fullname,
+          forumId,
+          pictureUrl
+        };
       } else {
         throw new ApolloError("Sorry, You cannot join this forum");
       }
